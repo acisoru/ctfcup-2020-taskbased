@@ -1,0 +1,16 @@
+version: '2.2'
+
+services:
+  web-security:
+    build: service
+    restart: on-failure
+    ports:
+      - 7701:31337
+    stop_grace_period: 5s
+    mem_limit: 256M
+    memswap_limit: 256M
+    pids_limit: 1024
+    ulimits: 
+      nofile:
+        soft: 1024
+        hard: 1024

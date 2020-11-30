@@ -1,0 +1,17 @@
+version: '2.3'
+
+services:
+  resolver:
+    build: service
+    restart: on-failure
+    pids_limit: 1024
+    mem_limit: 256M
+  nginx:
+    image: nginx
+    restart: on-failure
+    depends_on:
+      - resolver
+    ports:
+      - 7702:80
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro

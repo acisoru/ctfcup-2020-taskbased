@@ -1,0 +1,2 @@
+ctfcup{cdn-onesignal.com}
+ctfcup{cdn-onesignal}

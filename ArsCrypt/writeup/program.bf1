@@ -1,0 +1,21 @@
+# mem_print_with_single_pause - writes a string in memory, waits input
+# trash - make trash instructions
+
+screen_print Welcome to VBF!
+
+mem_print_with_single_pause Your secret symbol 1:
+trash 128
+mem_print_with_single_pause Your secret symbol 2:
+trash 24
+mem_print_with_single_pause Your secret symbol 3:
+trash 110
+mem_print_with_single_pause Your secret symbol 4:
+trash 94
+mem_print_with_single_pause Fmm, i made some IMPORTANT calculations. I hope you pass them
+trash 2200
+screen_print Okay, you got my instruction. Processing the witchcraft...
+draw_image arsib.png
+draw_with_pauses Cup{ViSuAl_BrAiN_hEcK}
+screen_print Process finished with exit code 0
+mem_print_with_single_pause C0ded by hexadec1mal
+trash 8

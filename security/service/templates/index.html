@@ -1,0 +1,145 @@
+<html>
+    <head>
+        <title>Security</title>
+    </head>
+    <body>
+        <script type="text/javascript">
+            function random_key(name) {
+                var length = 16 * 2;
+                var result = '';
+                var characters = 'ABCDEF0123456789';
+                var charactersLength = characters.length;
+
+                for (var i = 0; i < length; i++) {
+                    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+                }
+
+                document.getElementById(name).value = result;
+            }
+
+            function encrypt() {
+                data = {
+                    key: document.getElementById('encrypt_key').value,
+                    mode: document.getElementById('encrypt_mode').value,
+                    plaintext: document.getElementById('encrypt_plaintext').value
+                };
+
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "/encrypt", false);
+                xhr.setRequestHeader("Content-Type", "application/json");
+                xhr.send(JSON.stringify(data))
+
+                var response = JSON.parse(xhr.responseText);
+                
+                document.getElementById('encrypt_result_iv').value = response.iv;
+                document.getElementById('encrypt_result_result').value = response.result;
+            }
+
+            function decrypt() {
+                data = {
+                    iv: document.getElementById('decrypt_iv').value,
+                    key: document.getElementById('decrypt_key').value,
+                    mode: document.getElementById('decrypt_mode').value,
+                    ciphertext: document.getElementById('decrypt_ciphertext').value
+                };
+
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "/decrypt", false);
+                xhr.setRequestHeader("Content-Type", "application/json");
+                xhr.send(JSON.stringify(data))
+
+                var response = JSON.parse(xhr.responseText);
+                
+                document.getElementById('decrypt_result_result').value = response.result;
+            }
+
+            function copy_to_decrypt() {
+                document.getElementById('decrypt_iv').value = document.getElementById('encrypt_result_iv').value;
+                document.getElementById('decrypt_key').value = document.getElementById('encrypt_key').value;
+                document.getElementById('decrypt_mode').value = document.getElementById('encrypt_mode').value;
+                document.getElementById('decrypt_ciphertext').value = document.getElementById('encrypt_result_result').value;
+            }
+
+            function copy_to_encrypt() {
+                document.getElementById('encrypt_key').value = document.getElementById('decrypt_key').value;
+                document.getElementById('encrypt_mode').value = document.getElementById('decrypt_mode').value;
+                document.getElementById('encrypt_plaintext').value = document.getElementById('decrypt_result_result').value;
+            }
+        </script>
+        <table cellspacing="20px">
+            <tr>
+                <td>
+                    <h1>Encrypt</h1>
+                </td>
+                <td>
+                    <h1>Decrypt</h1>
+                </td>
+            </tr>
+            <tr>
+                <td>
+
+                </td>
+                <td>
+                    IV (32 hex chars): <input type="text" id="decrypt_iv" style="width: 300px">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="button" onclick="random_key('encrypt_key')" value="Generate random key"><br>
+                    Key (32 hex chars): <input type="text" id="encrypt_key" style="width: 300px"><br>
+                    Mode: <select id="encrypt_mode">
+                        <option value="CBC">CBC</option>
+                        <option value="CCM">CCM</option>
+                        <option value="CFB">CFB</option>
+                        <option value="CTR">CTR</option>
+                        <option value="ECB">ECB</option>
+                        <option value="OFB">OFB</option>
+                    </select><br>
+                    <textarea id="encrypt_plaintext" style="width: 500px; height: 100px">test123</textarea><br>
+                    <input type="button" onclick="encrypt()" value="ENCRYPT">
+                </td>
+                <td>
+                    <input type="button" onclick="random_key('decrypt_key')" value="Generate random key"><br>
+                    Key (32 hex chars): <input type="text" id="decrypt_key" style="width: 300px"><br>
+                    Mode: <select id="decrypt_mode">
+                        <option value="CBC">CBC</option>
+                        <option value="CCM">CCM</option>
+                        <option value="CFB">CFB</option>
+                        <option value="CTR">CTR</option>
+                        <option value="ECB">ECB</option>
+                        <option value="OFB">OFB</option>
+                    </select><br>
+                    <textarea id="decrypt_ciphertext" style="width: 500px; height: 100px"></textarea><br>
+                    <input type="button" onclick="decrypt()" value="DECRYPT">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h3>Result:</h3>
+                </td>
+                <td>
+                    <h3>Result:</h3>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    IV: <input readonly type="text" id="encrypt_result_iv" style="width: 300px"><br>
+                </td>
+                <td>
+
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    <textarea readonly id="encrypt_result_result" style="width: 500px; height: 100px"></textarea><br>
+                    <input type="button" onclick="copy_to_decrypt()" value="Copy to Decrypt">
+                </td>
+                <td>
+                    <textarea readonly id="decrypt_result_result" style="width: 500px; height: 100px"></textarea><br>
+                    <input type="button" onclick="copy_to_encrypt()" value="Copy to Encrypt">
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>
