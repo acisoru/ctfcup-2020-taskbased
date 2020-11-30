@@ -7,7 +7,7 @@
 Категория | Таск | Решения | Автор
 --- | --- | --- | ---
 Reverse | [PyMiner](https://github.com/acisoru/ctfcup-2020-TaskBased/tree/main/PyMiner) | 16 | [@hexadec1mal](https://github.com/rakovskij-stanislav)
-Reverse | [MatronX](https://github.com/acisoru/ctfcup-2020-TaskBased/tree/main/MatronX | 13 | [@hexadec1mal](https://github.com/rakovskij-stanislav)
+Reverse | [MatronX](https://github.com/acisoru/ctfcup-2020-TaskBased/tree/main/MatronX) | 13 | [@hexadec1mal](https://github.com/rakovskij-stanislav)
 Reverse | [ArsCrypt](https://github.com/acisoru/ctfcup-2020-TaskBased/tree/main/ArsCrypt) | 2 | [@hexadec1mal](https://github.com/rakovskij-stanislav)
 Misc | [Infected](https://github.com/acisoru/ctfcup-2020-TaskBased/tree/main/Infected) | 8 | [@naumovax](https://github.com/Naumovax)
 Misc | [20 last messages](https://github.com/acisoru/ctfcup-2020-TaskBased/tree/main/Last-message) | 8 | [@naumovax](https://github.com/Naumovax)
